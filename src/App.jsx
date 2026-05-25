@@ -284,7 +284,6 @@ function HeroImage() {
           />
           {/* soft edges so the image blends with the page background */}
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#050607] to-transparent" />
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[#050607]/60 to-transparent" />
           <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-24 bg-gradient-to-r from-[#050607] to-transparent lg:block" />
         </>
       ) : (
