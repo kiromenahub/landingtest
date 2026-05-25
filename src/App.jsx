@@ -271,29 +271,19 @@ function Navbar() {
 
 function HeroImage() {
   return (
-    <div className="relative h-full min-h-[280px] overflow-hidden bg-[#050607] sm:min-h-[360px] lg:min-h-[620px]">
+    <div className="relative min-h-[300px] overflow-hidden bg-[#050607] sm:min-h-[420px] lg:min-h-[calc(100vh-4rem)]">
       {heroImage ? (
-        <>
-          <motion.img
-            initial={{ opacity: 0, scale: 1.04 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            src={heroImage}
-            alt=""
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-          {/* soft edges so the image blends with the page background */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#transparent] to-transparent" />
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[#transparent]/60 to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-70 bg-gradient-to-r from-[#transparent] to-ransparent lg:block" />
-        </>
+        <motion.img
+          initial={{ opacity: 0, scale: 1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          src={heroImage}
+          alt=""
+          className="absolute inset-0 h-full w-full object-contain object-center"
+        />
       ) : (
         <div className="flex h-full items-center justify-center p-8">
-          <p className="text-center text-[11px] font-semibold uppercase tracking-[0.28em] text-white/30">
-            Drop an image into
-            <br />
-            <span className="text-white/55">src/assets/hero/</span>
-          </p>
+          <p className="text-center text-[11px] font-semibold uppercase tracking-[0.28em] text-white/30"></p>
         </div>
       )}
     </div>
@@ -528,12 +518,12 @@ export default function App() {
   const [openFaq, setOpenFaq] = React.useState(0);
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#050607] text-white antialiased">
+    <main className="min-h-screen overflow-x-hidden bg-[#050607] text-white antialiased">
       <Navbar />
 
       <div className="mx-auto min-h-screen max-w-[1220px] border-x border-white/10">
         {/* HERO -------------------------------------------------------- */}
-        <section className="grid pt-16 lg:min-h-screen lg:grid-cols-[1fr_0.95fr]">
+        <section className="grid pt-16 lg:min-h-[calc(100vh-4rem)] lg:grid-cols-[1fr_0.95fr]">
           <div className="relative flex flex-col px-5 pb-16 pt-20 sm:px-8 sm:pt-24 lg:min-h-[620px] lg:px-10 lg:pb-0 lg:pt-28">
             <div className="relative z-10">
               <motion.div
