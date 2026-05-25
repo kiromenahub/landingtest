@@ -283,8 +283,9 @@ function HeroImage() {
             className="absolute inset-0 h-full w-full object-cover"
           />
           {/* soft edges so the image blends with the page background */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#050607] to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-24 bg-gradient-to-r from-[#050607] to-transparent lg:block" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#transparent] to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[#transparent]/60 to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-70 bg-gradient-to-r from-[#transparent] to-ransparent lg:block" />
         </>
       ) : (
         <div className="flex h-full items-center justify-center p-8">
