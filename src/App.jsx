@@ -271,7 +271,7 @@ function Navbar() {
 
 function HeroImage() {
   return (
-    <div className="relative min-h-[300px] overflow-hidden bg-[#050607] sm:min-h-[420px] lg:min-h-[calc(100vh-4rem)]">
+    <div className="relative min-h-[500px] overflow-hidden bg-[#050607] sm:min-h-[420px] lg:min-h-[calc(100vh-4rem)]">
       {heroImage ? (
         <motion.img
           initial={{ opacity: 0, scale: 1 }}
