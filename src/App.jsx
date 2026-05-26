@@ -493,7 +493,7 @@ const secondRow = [...secondRowBase, ...secondRowBase];
     }
 
     .results-marquee {
-      animation: resultsMarquee 60s linear infinite;
+      animation: resultsMarquee 90s linear infinite;
     }
 
     .results-marquee-reverse {
