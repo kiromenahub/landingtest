@@ -278,16 +278,16 @@ function HeroImage() {
     <div className="relative min-h-[500px] overflow-hidden bg-[#050607] sm:min-h-[420px] lg:min-h-[calc(100vh-4rem)]">
       {heroImage ? (
         <motion.img
-  initial={{ opacity: 0, scale: 1 }}
-  animate={{ opacity: 1, scale: 1 }}
-  transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-  src={heroImage}
-  alt=""
-  draggable={false}
-  onDragStart={(e) => e.preventDefault()}
-  onContextMenu={(e) => e.preventDefault()}
-  className="hero-image absolute inset-0 h-full w-full select-none object-contain object-center"
-/>
+          initial={{ opacity: 0, scale: 1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          src={heroImage}
+          alt=""
+          draggable={false}
+          onDragStart={(e) => e.preventDefault()}
+          onContextMenu={(e) => e.preventDefault()}
+          className="hero-image absolute inset-0 h-full w-full select-none object-cover object-right"
+        />
       ) : (
         <div className="flex h-full items-center justify-center p-8">
           <p className="text-center text-[11px] font-semibold uppercase tracking-[0.28em] text-white/30"></p>
