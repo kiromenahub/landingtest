@@ -198,7 +198,7 @@ function Navbar() {
         <a href="#" className="flex items-center gap-2.5">
           <span className="h-2 w-2 rounded-full bg-white" />
           <span className="text-sm font-bold tracking-[-0.02em] text-white">
-            TTFL
+            The Trading Floor
           </span>
         </a>
 
@@ -466,11 +466,46 @@ function FaqItem({ q, a, isOpen, onToggle }) {
 function ResultsSection() {
   if (!testimonials.length) return null;
 
+  const midpoint = Math.ceil(testimonials.length / 2);
+
+const firstRowBase = testimonials.slice(0, midpoint);
+const secondRowBase = testimonials.slice(midpoint).length
+  ? testimonials.slice(midpoint)
+  : testimonials;
+
+const firstRow = [...firstRowBase, ...firstRowBase];
+const secondRow = [...secondRowBase, ...secondRowBase];
+
   return (
     <section
       id="results"
       className="border-t border-white/10 px-5 py-20 sm:px-8 sm:py-28 lg:px-10"
     >
+      <style>
+  {`
+    @keyframes resultsMarquee {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .results-marquee {
+      animation: resultsMarquee 60s linear infinite;
+    }
+
+    .results-marquee-reverse {
+      animation-direction: reverse;
+    }
+
+    .results-marquee-wrapper:hover .results-marquee {
+      animation-play-state: paused;
+    }
+  `}
+</style>
+
       <div className="mb-12 max-w-2xl sm:mb-16">
         <SectionEyebrow>Results</SectionEyebrow>
         <h2 className="mt-6 text-[32px] font-semibold leading-[1.05] tracking-[-0.04em] sm:text-[40px] lg:text-5xl">
@@ -480,32 +515,59 @@ function ResultsSection() {
         </h2>
       </div>
 
-      {testimonials.length === 1 ? (
-        <div className="mx-auto max-w-5xl overflow-hidden border border-white/10 bg-[#07090b]">
+      <div className="results-marquee-wrapper relative overflow-hidden py-3">
+  <div className="space-y-4">
+    <div className="results-marquee flex w-max gap-4">
+      {firstRow.map((item, index) => (
+        <motion.div
+          key={`first-${item.title}-${index}`}
+          whileHover={{
+            scale: 1.04,
+            y: -6,
+            zIndex: 30,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 22,
+          }}
+          className="group relative flex h-[220px] w-[340px] shrink-0 items-center justify-center overflow-hidden border border-white/10 bg-[#07090b] sm:h-[260px] sm:w-[400px]"
+        >
           <img
-            src={testimonials[0].image}
-            alt={testimonials[0].title}
-            className="h-auto w-full object-contain grayscale transition duration-700 hover:grayscale-0"
+            src={item.image}
+            alt={item.title}
+            className="h-full w-full object-contain grayscale transition-all duration-700 ease-out group-hover:grayscale-0"
           />
-        </div>
-      ) : (
-        <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
-          {testimonials.map((item, index) => (
-            <motion.div
-              key={`${item.title}-${index}`}
-              whileHover={{ y: -4 }}
-              transition={{ type: "spring", stiffness: 280, damping: 24 }}
-              className="mb-4 break-inside-avoid overflow-hidden border border-white/10 bg-[#07090b]"
-            >
-              <img
-                src={item.image}
-                alt={item.title}
-                className="h-auto w-full object-cover grayscale transition duration-700 hover:grayscale-0"
-              />
-            </motion.div>
-          ))}
-        </div>
-      )}
+        </motion.div>
+      ))}
+    </div>
+
+    <div className="results-marquee results-marquee-reverse flex w-max gap-4">
+      {secondRow.map((item, index) => (
+        <motion.div
+          key={`second-${item.title}-${index}`}
+          whileHover={{
+            scale: 1.04,
+            y: -6,
+            zIndex: 30,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 22,
+          }}
+          className="group relative flex h-[220px] w-[340px] shrink-0 items-center justify-center overflow-hidden border border-white/10 bg-[#07090b] sm:h-[260px] sm:w-[400px]"
+        >
+          <img
+            src={item.image}
+            alt={item.title}
+            className="h-full w-full object-contain grayscale transition-all duration-700 ease-out group-hover:grayscale-0"
+          />
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</div>
     </section>
   );
 }
@@ -772,10 +834,10 @@ export default function App() {
               <div className="mb-2 flex items-center gap-2.5">
                 <span className="h-2 w-2 rounded-full bg-white" />
                 <span className="text-sm font-bold tracking-[-0.02em] text-white">
-                  TTFL
+                  The Trading Floor
                 </span>
               </div>
-              <p>© 2026 TTFL. All rights reserved.</p>
+              <p>© 2026 The Trading Floor. All rights reserved.</p>
               <p className="mt-1 text-[11.5px] text-white/25">
                 Education only. Trading involves risk.
               </p>
