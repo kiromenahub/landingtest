@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   FaArrowRight,
   FaBars,
@@ -10,9 +11,11 @@ import {
   FaYoutube,
   FaTelegramPlane,
   FaDiscord,
+  FaTiktok,
   FaPlus,
   FaMinus,
 } from "react-icons/fa";
+
 import { motion, AnimatePresence } from "framer-motion";
 
 /* -------------------------------------------------------------------------- */
@@ -158,9 +161,10 @@ const faqs = [
 ];
 
 const socialLinks = [
-  { name: "Instagram", href: "https://instagram.com/yourusername", icon: FaInstagram },
-  { name: "YouTube", href: "https://youtube.com/@yourusername", icon: FaYoutube },
-  { name: "Telegram", href: "https://t.me/yourusername", icon: FaTelegramPlane },
+  { name: "Instagram", href: "https://www.instagram.com/_tradebooster/", icon: FaInstagram },
+  { name: "YouTube", href: "https://youtube.com/@yourusername", icon: FaYoutube, hidden: true },
+  { name: "TikTok", href: "https://www.tiktok.com/@tradebooster2", icon: FaTiktok },
+  { name: "Telegram", href: "https://t.me/yourusername", icon: FaTelegramPlane, hidden: true },
   { name: "Discord", href: "https://discord.gg/7nh5p27PRZ", icon: FaDiscord },
 ];
 
@@ -274,13 +278,16 @@ function HeroImage() {
     <div className="relative min-h-[500px] overflow-hidden bg-[#050607] sm:min-h-[420px] lg:min-h-[calc(100vh-4rem)]">
       {heroImage ? (
         <motion.img
-          initial={{ opacity: 0, scale: 1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          src={heroImage}
-          alt=""
-          className="absolute inset-0 h-full w-full object-contain object-center"
-        />
+  initial={{ opacity: 0, scale: 1 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+  src={heroImage}
+  alt=""
+  draggable={false}
+  onDragStart={(e) => e.preventDefault()}
+  onContextMenu={(e) => e.preventDefault()}
+  className="hero-image absolute inset-0 h-full w-full select-none object-contain object-center"
+/>
       ) : (
         <div className="flex h-full items-center justify-center p-8">
           <p className="text-center text-[11px] font-semibold uppercase tracking-[0.28em] text-white/30"></p>
@@ -580,7 +587,7 @@ export default function App() {
   const [openFaq, setOpenFaq] = React.useState(0);
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#050607] text-white antialiased">
+    <main className="min-h-screen overflow-x-hidden select-none bg-[#050607] text-white antialiased">
       <Navbar />
 
       <div className="mx-auto min-h-screen max-w-[1220px] border-x border-white/10">
@@ -812,11 +819,11 @@ export default function App() {
               </a>
 
               <a
-                href="mailto:hello@example.com"
+                href="https://discord.com/invite/7nh5p27PRZ"
                 className="inline-flex items-center justify-center gap-2.5 rounded-full border border-white/15 px-7 py-4 text-[14px] font-semibold text-white/75 transition-all duration-200 hover:border-white/30 hover:bg-white/[0.04] hover:text-white"
               >
-                <FaEnvelope size={14} />
-                Send email
+                <FaDiscord size={14} />
+                Join Discord
               </a>
             </div>
 
@@ -844,18 +851,20 @@ export default function App() {
             </div>
 
             <div className="flex items-center gap-2.5">
-              {socialLinks.map(({ name, href, icon: Icon }) => (
-                <a
-                  key={name}
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={name}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white/50 transition-all duration-200 hover:border-white/30 hover:bg-white hover:text-black"
-                >
-                  <Icon size={14} />
-                </a>
-              ))}
+              {socialLinks
+  .filter((item) => !item.hidden)
+  .map(({ name, href, icon: Icon }) => (
+    <a
+      key={name}
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={name}
+      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white/50 transition-all duration-200 hover:border-white/30 hover:bg-white hover:text-black"
+    >
+      <Icon size={14} />
+    </a>
+  ))}
             </div>
           </div>
         </footer>

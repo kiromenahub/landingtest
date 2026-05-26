@@ -10,3 +10,7 @@ body {
   background: #090a0c;
   font-family: "Inter", sans-serif;
 }
+.hero-image {
+  -webkit-user-drag: none;
+  user-select: none;
+}
